@@ -23,7 +23,9 @@ const io = new Server(server, {
   cors: {
     origin: [   
       process.env.VITE_CLIENT_URL,
-      process.env.VITE_CLIENT_URL_2],
+      process.env.VITE_CLIENT_URL_2,
+      'https://sithee-food-products-cons-server.onrender.com'
+    ],
     methods: ["GET", "POST"]
   }
 })
