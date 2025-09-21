@@ -46,7 +46,7 @@ io.on('connection', (socket) => {
   
   // Handle admin joining
   socket.on('join-admin', () => {
-    socket.join('admin')
+    socket.join('admin-room')
     console.log('👑 Admin joined:', socket.id)
   })
   

@@ -23,7 +23,7 @@
     "express": "^5.1.0",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoos": "^0.0.1-security",
+    "mongoos": "^0.0.1-security", 
     "mongoose": "^8.17.0",
     "multer": "^2.0.2",
     "multer-storage-cloudinary": "^4.0.0",

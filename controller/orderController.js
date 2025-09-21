@@ -143,6 +143,18 @@ export const createOrder = async (req, res) => {
     await order.save();
     await order.populate('userId', 'name email');
 
+    // Emit new order event to admins
+    const io = req.app.get('io');
+    if (io) {
+      io.to('admin-room').emit('new-order', {
+        orderId: order._id,
+        customerName: order.userDetails.name,
+        totalAmount: order.finalAmount,
+        timestamp: new Date()
+      });
+      console.log('📡 Socket event emitted for new order');
+    }
+
     res.status(201).json({
       success: true,
       message: 'Order placed successfully',
@@ -302,6 +314,18 @@ export const createGuestOrder = async (req, res) => {
     });
 
     await order.save();
+
+    // Emit new order event to admins for guest orders
+    const io = req.app.get('io');
+    if (io) {
+      io.to('admin-room').emit('new-order', {
+        orderId: order._id,
+        customerName: order.userDetails.name,
+        totalAmount: order.finalAmount,
+        timestamp: new Date()
+      });
+      console.log('📡 Socket event emitted for new guest order');
+    }
 
     // Generate a more user-friendly order ID
     const friendlyOrderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
