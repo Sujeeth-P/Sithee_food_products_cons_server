@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import route from './routes/routes.js'
 import productRoutes from './routes/productRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
+import paymentRoutes from './routes/paymentRoutes.js' 
 import { createServer } from 'http'
 import { Server } from 'socket.io'
 
@@ -64,6 +65,7 @@ io.on('connection', (socket) => {
 app.use('/sithee', route)
 app.use('/api/products', productRoutes)
 app.use('/api/orders', orderRoutes);
+app.use('/api/payment', paymentRoutes)  
 
 server.listen(PORT, () => {
     console.log(`🚀 Server is running on port ${PORT}`);
